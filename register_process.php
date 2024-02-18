@@ -1,25 +1,18 @@
 <?php
-// Establish database connection
-$conn = mysqli_connect("localhost", "root", "", "kbc");
+// Database credentials
+$servername = "database-1.c5g00kig6lqe.us-east-1.rds.amazonaws.com";
+$username = "admin";
+$password = "Admin2024";
+$dbname = "Mychoise";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve form data
-$username = mysqli_real_escape_string($conn, $_POST['username']);
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash password for security
 
-// Insert user data into database
-$sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
-
-if (mysqli_query($conn, $sql)) {
-    echo "Registration successful!";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-mysqli_close($conn);
+echo "Database connection succesfully";
 ?>

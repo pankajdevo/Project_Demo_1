@@ -8,11 +8,11 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # Update the package lists and install any needed dependencies
-RUN apt-get update && \
-    apt-get install -y \
+RUN sudo apt-get update && \
+    sudo apt-get install -y \
         libapache2-mod-php \
     && \
-    apt-get clean && \
+    sudo apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Enable Apache rewrite module
